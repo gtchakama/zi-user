@@ -1,4 +1,6 @@
-const getZiUser = require("zi-user");
+// const getZiUser = require("zi-user");
+const getZiUser = require('./index');
+
 
 const user = getZiUser();
 
