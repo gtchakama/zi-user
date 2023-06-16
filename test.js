@@ -1,8 +1,14 @@
-// const getZiUser = require("zi-user");
-const getZiUser = require('./index');
+const getZiUser = require("zi-user");
+// const getZiUser = require('./index');
 
 
 const user = getZiUser();
 
-console.log(user);
-// Output: { name: 'Emma', surname: 'Clark', email: 'emma.clark2732@example.com', password: 'imzqcvkw' }
+console.table(getZiUser(9));
+// Output: {
+//   firstName: 'Tariro',
+//   lastName: 'Mukanya',
+//   email: 'tariro.mukanya6440@example.com',
+//   password: 'Paoun4*h',
+//   username: 'TMaurkiarnoya'
+// }
