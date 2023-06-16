@@ -9,6 +9,6 @@
   "author": "gtchakama",
   "license": "ISC",
   "dependencies": {
-    "zi-user": "^1.0.0"
+    "zi-user": "^1.0.1"
   }
 }
