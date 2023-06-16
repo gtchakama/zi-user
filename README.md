@@ -17,6 +17,7 @@ To use Zi-User, simply import the module and call the `getZiUser()` function:
 ```javascript
 const getZiUser = require("zi-user");
 
+// Generate a single user
 const user = getZiUser();
 
 console.log(user);
@@ -28,9 +29,52 @@ console.log(user);
 //   password: 'A4@vweakcyr',
 //   username: 'RuSi'
 // }
+
+// Generate multiple users
+const users = getZiUser(5);
+
+console.log(users);
+// Output:
+// [
+//   {
+//     firstName: 'Kyra',
+//     lastName: 'Mukamuri',
+//     email: 'kyra.mukamuri5897@example.com',
+//     password: 'J6^xhpnzvsbtlq',
+//     username: 'KyMu'
+//   },
+//   {
+//     firstName: 'Tariro',
+//     lastName: 'Chinoda',
+//     email: 'tariro.chinoda2561@example.com',
+//     password: 'L2#yitgfvkrocu',
+//     username: 'TaCh'
+//   },
+//   {
+//     firstName: 'Kudakwashe',
+//     lastName: 'Mufandaedza',
+//     email: 'kudakwashe.mufandaedza1900@example.com',
+//     password: 'F8+ewrmdkqtsab',
+//     username: 'KuMu'
+//   },
+//   {
+//     firstName: 'Leah',
+//     lastName: 'Dube',
+//     email: 'leah.dube6413@example.com',
+//     password: 'G7*opjicsrxqtm',
+//     username: 'LeDu'
+//   },
+//   {
+//     firstName: 'Tendai',
+//     lastName: 'Nyamukapa',
+//     email: 'tendai.nyamukapa7205@example.com',
+//     password: 'H9)flvzewxgbsn',
+//     username: 'TeNy'
+//   }
+// ]
 ```
 
-The `getZiUser()` function returns an object with five properties: `firstName`, `lastName`, `email`, `password`, and `username`.
+The `getZiUser()` function returns an object with five properties: `firstName`, `lastName`, `email`, `password`, and `username`. If you specify a number as an argument, the function will generate an array of users with the specified length. If no argument is provided or the argument is falsy, the function returns a single user object.
 
 ## Use Cases
 
