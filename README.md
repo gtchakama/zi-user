@@ -1,10 +1,22 @@
 # Zi-User
 
-Zi-User is a simple package that generates random user objects with fake names and passwords. It uses an object containing arrays of fake first names and last names to generate random name combinations. It also generates a random email address and password.
+Zi-User is a robust TypeScript package for generating random user objects with realistic fake names, emails, passwords, usernames, and additional details. It's designed to be flexible, easy to use, and perfect for testing, development, and demonstration purposes.
+
+## Features
+
+- Generate single or multiple user objects
+- Realistic first names and last names
+- Email generation based on user names (with uniqueness check)
+- Strong password generation with mixed character types
+- Username creation from first and last names (with format options)
+- Additional user properties: age, birth date, phone number
+- Export generated users to JSON or CSV
+- Written in TypeScript for better type safety
+- Customizable options
 
 ## Installation
 
-To use Zi-User in your project, you can install it via npm:
+Install Zi-User via npm:
 
 ```bash
 npm install zi-user
@@ -12,86 +24,98 @@ npm install zi-user
 
 ## Usage
 
-To use Zi-User, simply import the module and call the `getZiUser()` function:
+Here's how to use Zi-User in your TypeScript project:
 
-```javascript
-const getZiUser = require("zi-user");
+```typescript
+import UserGenerator from 'zi-user';
+
+// Create a generator with custom options
+const generator = new UserGenerator({
+  emailDomain: 'example.com',
+  passwordLength: 16,
+  usernameFormat: 'firstDotLast'
+});
 
 // Generate a single user
-const user = getZiUser();
-
+const user = generator.getZiUser();
 console.log(user);
-// Output:
-// {
-//   firstName: 'Rufaro',
-//   lastName: 'Sibanda',
-//   email: 'rufaro.sibanda4529@example.com',
-//   password: 'A4@vweakcyr',
-//   username: 'RuSi'
-// }
 
 // Generate multiple users
-const users = getZiUser(5);
-
+const users = generator.getZiUser(5);
 console.log(users);
-// Output:
-// [
-//   {
-//     firstName: 'Kyra',
-//     lastName: 'Mukamuri',
-//     email: 'kyra.mukamuri5897@example.com',
-//     password: 'J6^xhpnzvsbtlq',
-//     username: 'KyMu'
-//   },
-//   {
-//     firstName: 'Tariro',
-//     lastName: 'Chinoda',
-//     email: 'tariro.chinoda2561@example.com',
-//     password: 'L2#yitgfvkrocu',
-//     username: 'TaCh'
-//   },
-//   {
-//     firstName: 'Kudakwashe',
-//     lastName: 'Mufandaedza',
-//     email: 'kudakwashe.mufandaedza1900@example.com',
-//     password: 'F8+ewrmdkqtsab',
-//     username: 'KuMu'
-//   },
-//   {
-//     firstName: 'Leah',
-//     lastName: 'Dube',
-//     email: 'leah.dube6413@example.com',
-//     password: 'G7*opjicsrxqtm',
-//     username: 'LeDu'
-//   },
-//   {
-//     firstName: 'Tendai',
-//     lastName: 'Nyamukapa',
-//     email: 'tendai.nyamukapa7205@example.com',
-//     password: 'H9)flvzewxgbsn',
-//     username: 'TeNy'
-//   }
-// ]
+
+// Export users to JSON
+generator.exportToJson(users, 'users.json');
+
+// Export users to CSV
+generator.exportToCsv(users, 'users.csv');
 ```
 
-The `getZiUser()` function returns an object with five properties: `firstName`, `lastName`, `email`, `password`, and `username`. If you specify a number as an argument, the function will generate an array of users with the specified length. If no argument is provided or the argument is falsy, the function returns a single user object.
+## API
 
-## Use Cases
+### `UserGenerator`
 
-Here are some use cases for the Zi-User package:
+#### Constructor
 
-1. **Testing and development**: The Zi-User package can be used to generate fake user data for testing and development purposes. This can be particularly useful when developing applications that require user authentication.
+```typescript
+new UserGenerator(options?: UserGeneratorOptions)
+```
 
-2. **Demo and mockup creation**: The package can also be used to create demos and mockups quickly without having to spend time creating user data manually.
+- `options` (optional): An object with the following properties:
+  - `emailDomain`: Domain for generated email addresses (default: 'gmail.com')
+  - `passwordLength`: Length of generated passwords (default: 12)
+  - `usernameFormat`: Format for usernames ('firstLast', 'firstInitialLast', or 'firstDotLast', default: 'firstLast')
 
-3. **Training and workshops**: The package can be used in training and workshop settings to teach users about authentication and user management systems. By generating fake user data, users can learn how to create, update, and delete user accounts without needing real user data.
+#### Methods
 
-4. **Data analysis and visualization**: The package can be used to generate a large amount of fake user data that can be used for data analysis and visualization purposes. This can be particularly useful for data scientists and researchers who need to work with large datasets.
+- `getZiUser(numUsers?: number): User | User[]`
+  - Generates user objects with random data.
+  - `numUsers` (optional): Number of users to generate. Defaults to 1.
+  - Returns: A single user object if `numUsers` is 1, otherwise an array of user objects.
+  - Throws an error if `numUsers` is less than 1.
 
-5. **Load testing**: The package can also be used to simulate user behavior during load testing. By generating a large number of user objects, developers can simulate real-world scenarios and test the scalability and performance of their applications under heavy load.
+- `exportToJson(users: User | User[], filename: string): void`
+  - Exports user(s) to a JSON file.
+  - `users`: User or array of users to export
+  - `filename`: Name of the file to save
+
+- `exportToCsv(users: User | User[], filename: string): void`
+  - Exports user(s) to a CSV file.
+  - `users`: User or array of users to export
+  - `filename`: Name of the file to save
+
+### User Object
+
+Each user object contains:
+- `firstName`: A random first name
+- `lastName`: A random last name
+- `email`: A unique email address generated from the name
+- `password`: A strong random password
+- `username`: A username created from the first and last name
+- `age`: A random age between 18 and 80
+- `birthDate`: A birth date consistent with the age
+- `phoneNumber`: A random phone number
+
+## Testing
+
+To run the tests:
+
+```bash
+npm test
+```
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
 
 ## License
 
-This package is licensed under the MIT license. See the `LICENSE` file for more information.
+This package is open source and available under the [MIT License](LICENSE).
 
-A project by George Chakama
+## Author
+
+Created and maintained by George Chakama.
+
+---
+
+For more information or to report issues, please visit the [GitHub repository](https://github.com/gtchakama/zi-user).
